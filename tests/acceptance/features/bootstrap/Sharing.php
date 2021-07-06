@@ -3242,12 +3242,11 @@ trait Sharing {
 		$url = $this->getBaseUrl() . "/index.php/apps/files_sharing/external";
 
 		$response = HttpRequestHelper::post($url, $user, $userPassword, null, $body);
-		// var_dump($response);
 		$this->setResponse($response);
 	}
 
 	/**
-	 * @When /^user "([^"]*)" adds the public share created from server "([^"]*)" using the API$/
+	 * @When /^user "([^"]*)" adds the public share created from server "([^"]*)" using the sharing API$/
 	 *
 	 * @param string $user
 	 * @param string $shareServer

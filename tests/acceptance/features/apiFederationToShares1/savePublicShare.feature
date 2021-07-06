@@ -3,6 +3,7 @@ Feature: Save public shares created by oC users
 
   Background:
     Given using server "LOCAL"
+    And the administrator has set the default folder for received shares to "Shares"
     And user "Alice" has been created with default attributes and without skeleton files
 
 
@@ -15,8 +16,8 @@ Feature: Save public shares created by oC users
       | permissions | read,update,create,delete |
     When user "Brian" adds the public share created from server "LOCAL" using the sharing API
     Then the HTTP status code should be "200"
-    And as "Brian" folder "/PARENT" should exist
-    And as "Brian" file "/PARENT/lorem.txt" should exist
+    And as "Brian" folder "/Shares/PARENT" should exist
+    And as "Brian" file "/Shares/PARENT/lorem.txt" should exist
 
 
   Scenario: Mount public share and then delete (local server share)
@@ -27,9 +28,9 @@ Feature: Save public shares created by oC users
       | permissions | read    |
     When user "Brian" adds the public share created from server "LOCAL" using the sharing API
     Then the HTTP status code should be "200"
-    And as "Brian" folder "/PARENT" should exist
-    When user "Brian" deletes folder "/PARENT" using the WebDAV API
-    Then as "Brian" folder "/PARENT" should not exist
+    And as "Brian" folder "/Shares/PARENT" should exist
+    When user "Brian" deletes folder "/Shares/PARENT" using the WebDAV API
+    Then as "Brian" folder "/Shares/PARENT" should not exist
 
 
   Scenario: Mount public share and sharer unshares the share (local server share)
@@ -41,9 +42,9 @@ Feature: Save public shares created by oC users
       | name        | sharedlink |
     When user "Brian" adds the public share created from server "LOCAL" using the sharing API
     Then the HTTP status code should be "200"
-    And as "Brian" folder "/PARENT" should exist
+    And as "Brian" folder "/Shares/PARENT" should exist
     When user "Alice" deletes public link share named "sharedlink" in file "/PARENT" using the sharing API
-    Then as "Brian" folder "/PARENT" should not exist
+    Then as "Brian" folder "/Shares/PARENT" should not exist
 
 
   Scenario Outline: Mount public share and try to reshare (local server share)
@@ -55,9 +56,9 @@ Feature: Save public shares created by oC users
       | permissions | read,update,create,delete |
     When user "Brian" adds the public share created from server "LOCAL" using the sharing API
     Then the HTTP status code should be "200"
-    And as "Brian" folder "/PARENT" should exist
+    And as "Brian" folder "/Shares/PARENT" should exist
     When user "Brian" creates a public link share using the sharing API with settings
-      | path | PARENT |
+      | path | /Shares/PARENT |
     Then the OCS status code should be "404"
     And the HTTP status code should be "<http_status_code>"
     Examples:
@@ -77,8 +78,8 @@ Feature: Save public shares created by oC users
     And using server "LOCAL"
     When user "Alice" adds the public share created from server "REMOTE" using the sharing API
     Then the HTTP status code should be "200"
-    And as "Alice" folder "/PARENT" should exist
-    And as "Alice" file "/PARENT/lorem.txt" should exist
+    And as "Alice" folder "/Shares/PARENT" should exist
+    And as "Alice" file "/Shares/PARENT/lorem.txt" should exist
 
 
   Scenario: Mount public share and then delete (remote server share)
@@ -91,9 +92,9 @@ Feature: Save public shares created by oC users
     And using server "LOCAL"
     When user "Alice" adds the public share created from server "REMOTE" using the sharing API
     Then the HTTP status code should be "200"
-    And as "Alice" folder "/PARENT" should exist
-    When user "Alice" deletes folder "/PARENT" using the WebDAV API
-    Then as "Alice" folder "/PARENT" should not exist
+    And as "Alice" folder "/Shares/PARENT" should exist
+    When user "Alice" deletes folder "/Shares/PARENT" using the WebDAV API
+    Then as "Alice" folder "/Shares/PARENT" should not exist
 
 
   Scenario: Mount public share and sharer unshares the share (remote server share)
@@ -107,11 +108,11 @@ Feature: Save public shares created by oC users
     And using server "LOCAL"
     When user "Alice" adds the public share created from server "REMOTE" using the sharing API
     Then the HTTP status code should be "200"
-    And as "Alice" folder "/PARENT" should exist
+    And as "Alice" folder "/Shares/PARENT" should exist
     When using server "REMOTE"
     And user "RemoteAlice" deletes public link share named "sharedlink" in file "/PARENT" using the sharing API
     And using server "LOCAL"
-    Then as "Alice" folder "/PARENT" should not exist
+    Then as "Alice" folder "/Shares/PARENT" should not exist
 
 
   Scenario Outline: Mount public share and try to reshare (remote server share)
@@ -125,9 +126,9 @@ Feature: Save public shares created by oC users
     And using server "LOCAL"
     When user "Alice" adds the public share created from server "REMOTE" using the sharing API
     Then the HTTP status code should be "200"
-    And as "Alice" folder "/PARENT" should exist
+    And as "Alice" folder "/Shares/PARENT" should exist
     When user "Alice" creates a public link share using the sharing API with settings
-      | path | PARENT |
+      | path | /Shares/PARENT |
     Then the OCS status code should be "404"
     And the HTTP status code should be "<http_status_code>"
     Examples:
