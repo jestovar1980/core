@@ -38,6 +38,7 @@ use OCA\Files_Sharing\Middleware\SharingCheckMiddleware;
 use OCA\Files_Sharing\MountProvider;
 use OCA\Files_Sharing\Notifier;
 use OCA\Files_Sharing\SharingBlacklist;
+use OCA\Files_Sharing\SharingWhitelist;
 use OCP\AppFramework\App;
 use OCP\IContainer;
 use OCA\Files_Sharing\Hooks;
@@ -97,7 +98,8 @@ class Application extends App {
 				$server->getConfig(),
 				$c->query(NotificationPublisher::class),
 				$server->getEventDispatcher(),
-				$c->query(SharingBlacklist::class)
+				$c->query(SharingBlacklist::class),
+				$c->query(SharingWhitelist::class)
 			);
 		});
 

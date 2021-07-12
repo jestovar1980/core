@@ -264,4 +264,30 @@ class Hooks {
 
 		return null;
 	}
+
+	public static function deleteGroup($params) {
+		$sharingWhitelist = new SharingWhitelist(
+			\OC::$server->getConfig(),
+			\OC::$server->getGroupManager()
+		);
+
+		$groupId = $params['gid'];
+		$whiteListedGroups =  $sharingWhitelist->getWhiteListedPublicShareSharersGroups();
+
+		if (\in_array($groupId, $whiteListedGroups)) {
+			$sharingWhitelist->setWhitelistedPublicShareSharersGroups(array_diff($whiteListedGroups, [$groupId]));
+		}
+	}
+
+	public static function extendJsConfig($array) {
+		$sharingWhitelist = new SharingWhitelist(
+			\OC::$server->getConfig(),
+			\OC::$server->getGroupManager()
+		);
+
+		$array['array']['oc_appconfig']['files_sharing'] = [
+			'whitelistedPublicShareSharersGroups' => $sharingWhitelist->getWhiteListedPublicShareSharersGroups(),
+			'whitelistedPublicShareSharersGroupsEnabled' => $sharingWhitelist->isGroupPublicShareSharersWhitelistEnabled(),
+		];
+	}
 }

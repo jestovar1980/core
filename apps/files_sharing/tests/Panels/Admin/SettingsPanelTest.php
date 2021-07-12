@@ -22,11 +22,15 @@ namespace OCA\Files_Sharing\Tests\Panels\Admin;
 
 use OCP\GroupInterface;
 use OCA\Files_Sharing\SharingBlacklist;
+use OCA\Files_Sharing\SharingWhitelist;
 use OCA\Files_Sharing\Panels\Admin\SettingsPanel;
 
 class SettingsPanelTest extends \Test\TestCase {
 	/** @var SharingBlacklist | \PHPUnit\Framework\MockObject\MockObject */
 	private $sharingBlacklist;
+
+	/** @var SharingWhitelist | \PHPUnit\Framework\MockObject\MockObject */
+	private $sharingWhitelist;
 
 	/** @var SettingsPanel | \PHPUnit\Framework\MockObject\MockObject */
 	private $settingsPanel;
@@ -36,7 +40,7 @@ class SettingsPanelTest extends \Test\TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$this->settingsPanel = new SettingsPanel($this->sharingBlacklist);
+		$this->settingsPanel = new SettingsPanel($this->sharingBlacklist, $this->sharingWhitelist);
 	}
 
 	public function testGetSectionID() {

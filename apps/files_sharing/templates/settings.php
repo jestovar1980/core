@@ -29,4 +29,24 @@ script('files_sharing', 'settings');
 		<br />
 		<em><?php p($l->t('These groups will not be available to share with. Members of the group are not restricted in initiating shares and can receive shares with other groups they are a member of as usual.')); ?></em>
 	</div>
+
+	<p>
+		<input type="checkbox"
+			   name="whitelisted_public_share_sharers_groups_enabled"
+			   id="whiteListedPublicShareSharersGroupsEnabled" class="checkbox"
+			   value="1" <?php if ($_['whiteListedPublicShareSharersGroupsEnabled'] === 'yes') {
+	print_unescaped('checked="checked"');
+} ?> />
+		<label for="whiteListedPublicShareSharersGroupsEnabled"><?php p($l->t('Only exclusive groups are allowed to create public links')); ?></label><br/>
+		<span id="setWhiteListedPublicShareSharersGroups"
+			  class="indent <?php if ($_['whiteListedPublicShareSharersGroupsEnabled'] === 'no') {
+	p('hidden');
+} ?>">
+		  <input name="whitelisted_public_share_sharers_groups"
+				 id="setWhiteListedPublicShareSharersGroups"
+				 class="noautosave"
+				 value="<?php p($_['whiteListedPublicShareSharersGroups']) ?>"
+				 style="width: 400px"/>
+		  </span>
+		</p>
 </div>
