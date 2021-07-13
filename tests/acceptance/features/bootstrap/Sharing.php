@@ -3246,6 +3246,26 @@ trait Sharing {
 	}
 
 	/**
+	 * @Given /^user "([^"]*)" has added the public share created from server "([^"]*)" using the sharing API$/
+	 *
+	 * @param string $user
+	 * @param string $shareServer
+	 *
+	 * @return void
+	 */
+	public function userHasAddedPublicShareCreatedByUser($user, $shareServer) {
+		$this->saveLastSharedPublicLinkShare($user, $shareServer);
+		Assert::assertEquals(
+			200,
+			$this->response->getStatusCode(),
+			__METHOD__
+			. " Expected status code is '200' but got '"
+			. $this->response->getStatusCode()
+			. "'"
+		);
+	}
+
+	/**
 	 * @When /^user "([^"]*)" adds the public share created from server "([^"]*)" using the sharing API$/
 	 *
 	 * @param string $user
