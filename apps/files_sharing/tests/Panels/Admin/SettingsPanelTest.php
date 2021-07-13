@@ -20,7 +20,6 @@
  */
 namespace OCA\Files_Sharing\Tests\Panels\Admin;
 
-use OCP\GroupInterface;
 use OCA\Files_Sharing\SharingBlacklist;
 use OCA\Files_Sharing\SharingWhitelist;
 use OCA\Files_Sharing\Panels\Admin\SettingsPanel;
@@ -37,6 +36,10 @@ class SettingsPanelTest extends \Test\TestCase {
 
 	protected function setUp(): void {
 		$this->sharingBlacklist = $this->getMockBuilder(SharingBlacklist::class)
+			->disableOriginalConstructor()
+			->getMock();
+
+		$this->sharingWhitelist = $this->getMockBuilder(SharingWhitelist::class)
 			->disableOriginalConstructor()
 			->getMock();
 

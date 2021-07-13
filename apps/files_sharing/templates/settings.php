@@ -37,7 +37,7 @@ script('files_sharing', 'settings');
 			   value="1" <?php if ($_['whiteListedPublicShareSharersGroupsEnabled'] === 'yes') {
 	print_unescaped('checked="checked"');
 } ?> />
-		<label for="whiteListedPublicShareSharersGroupsEnabled"><?php p($l->t('Only exclusive groups are allowed to create public links')); ?></label><br/>
+		<label for="whiteListedPublicShareSharersGroupsEnabled"><?php p($l->t('Only certain groups are allowed to create public links')); ?></label><br/>
 		<span id="setWhiteListedPublicShareSharersGroups"
 			  class="indent <?php if ($_['whiteListedPublicShareSharersGroupsEnabled'] === 'no') {
 	p('hidden');
