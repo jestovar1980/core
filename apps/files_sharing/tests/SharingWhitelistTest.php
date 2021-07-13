@@ -131,7 +131,7 @@ class SharingWhitelistTest extends \Test\TestCase {
 		$this->config->method('getAppValue')
 			->will($this->returnValueMap($config));
 
-		$this->assertEquals($this->sharingWhitelist->getWhiteListedPublicShareSharersGroups(), $result);
+		$this->assertEquals($this->sharingWhitelist->getWhitelistedPublicShareSharersGroups(), $result);
 	}
 
 	public function getWhitelistedPublicShareSharersGroupsDataProvider() {
@@ -164,6 +164,6 @@ class SharingWhitelistTest extends \Test\TestCase {
 			->will($this->returnValueMap([['files_sharing', 'whitelisted_public_share_sharers_groups', '[]', '["group1", "group2"]']]));
 
 		$this->sharingWhitelist->setWhitelistedPublicShareSharersGroups(["group1", "group2"]);
-		$this->assertEquals(["group1", "group2"], $this->sharingWhitelist->getWhiteListedPublicShareSharersGroups());
+		$this->assertEquals(["group1", "group2"], $this->sharingWhitelist->getWhitelistedPublicShareSharersGroups());
 	}
 }

@@ -43,7 +43,7 @@ script('files_sharing', 'settings');
 	p('hidden');
 } ?>">
 		  <input name="whitelisted_public_share_sharers_groups"
-				 id="setWhiteListedPublicShareSharersGroups"
+				 id="whiteListedPublicShareSharersGroups"
 				 class="noautosave"
 				 value="<?php p($_['whiteListedPublicShareSharersGroups']) ?>"
 				 style="width: 400px"/>

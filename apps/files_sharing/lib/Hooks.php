@@ -272,7 +272,7 @@ class Hooks {
 		);
 
 		$groupId = $params['gid'];
-		$whiteListedGroups =  $sharingWhitelist->getWhiteListedPublicShareSharersGroups();
+		$whiteListedGroups =  $sharingWhitelist->getWhitelistedPublicShareSharersGroups();
 
 		if (\in_array($groupId, $whiteListedGroups)) {
 			$sharingWhitelist->setWhitelistedPublicShareSharersGroups(array_diff($whiteListedGroups, [$groupId]));
@@ -286,7 +286,7 @@ class Hooks {
 		);
 
 		$array['array']['oc_appconfig']['files_sharing'] = [
-			'whitelistedPublicShareSharersGroups' => $sharingWhitelist->getWhiteListedPublicShareSharersGroups(),
+			'whitelistedPublicShareSharersGroups' => $sharingWhitelist->getWhitelistedPublicShareSharersGroups(),
 			'whitelistedPublicShareSharersGroupsEnabled' => $sharingWhitelist->isGroupPublicShareSharersWhitelistEnabled(),
 		];
 	}

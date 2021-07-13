@@ -85,7 +85,7 @@ class SharingWhitelist {
 	 * Note that this might contain wrong information
 	 * @return string[] the list of group ids
 	 */
-	public function getWhiteListedPublicShareSharersGroups() {
+	public function getWhitelistedPublicShareSharersGroups() {
 		return  $this->fetchWhitelistedPublicShareSharersGroups();
 	}
 
